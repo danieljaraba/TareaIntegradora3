@@ -4,9 +4,11 @@ import java.util.Scanner;
 import model.Club;
 
 public class Main {
+
+    //Relationships
+    private Club club;
     
     //Atributes
-    private Club club;
     private Scanner sc;
 
     //Builder
@@ -39,6 +41,8 @@ public class Main {
                          "(5) Fire a principal trainer. \n" +
                          "(6) Fire an assistant trainer. \n" +
                          "(7) Show employees. \n" +
+                         "(8) Show dressing rooms. \n" +
+                         "(9) Show office sector. \n" +
                          "(0) End the program. \n"
                         );
     }
@@ -65,6 +69,12 @@ public class Main {
             break;
             case 7:
                 showEmployees();
+            break;
+            case 8:
+                showDressingRooms();
+            break;
+            case 9:
+                showOfficeSector();
             break;
         }
     }
@@ -249,5 +259,15 @@ public class Main {
         int index = sc.nextInt();
         sc.nextLine();
         club.fireAssitant(team, index-1);
+    }
+
+    public void showDressingRooms(){
+        System.out.print(club.showDressingRoomA());
+        System.out.println("");
+        System.out.print(club.showDressingRoomB());
+    }
+
+    public void showOfficeSector(){
+        System.out.print(club.showOfficeSector());
     }
 }

@@ -10,6 +10,7 @@ public class Club {
     private String foundationDate;
     private String[][] dressingRoomA;
     private String[][] dressingRoomB;
+    private String[][] officeSector;
 
     //Relationships
     private Team teamA;
@@ -23,6 +24,7 @@ public class Club {
         this.foundationDate = foundationDate;
         this.dressingRoomA = new String[7][6];
         this.dressingRoomB = new String[7][7];
+        this.officeSector = new String[6][6];
         this.teamA = new Team("A");
         this.teamB = new Team("B");
         this.employees = new ArrayList<Employee>();
@@ -214,5 +216,92 @@ public class Club {
                     }
             break;
         }
+    }
+
+    public String showDressingRoomA(){
+        String text = "\n-----------  Dressing Room A  ----------\n";
+        boolean set = false;
+        Player[] cPlayers = teamA.getPlayers();
+        for(int i = 0; i<dressingRoomA.length; i= i+2){
+            for(int j = 0; j<dressingRoomA[0].length; j = j+2){
+                set = false;
+                for(int k = 0; k<cPlayers.length && !set; k++){
+                    if(cPlayers[k] != null){
+                        dressingRoomA[i][j] = cPlayers[k].getName();
+                        cPlayers[k] = null;
+                        set = true;
+                    }
+                }
+            }
+        }
+        for(int i = 0; i<dressingRoomA.length; i++){
+            for(int j = 0; j<dressingRoomA[0].length; j++){
+                if(dressingRoomA[i][j] != null){
+                    text += dressingRoomA[i][j] + "\t";
+                } else{
+                    text += "Empty \t";
+                }
+            }
+            text += "\n";
+        }
+        return text;
+    }
+
+    public String showDressingRoomB(){
+        String text = "\n-----------  Dressing Room B  ----------\n";
+        boolean set = false;
+        Player[] cPlayers = teamB.getPlayers();
+        for(int i = 0; i<dressingRoomB.length; i= i+2){
+            for(int j = 0; j<dressingRoomB[0].length && !set; j = j+2){
+                set = false;
+                for(int k = 0; k<cPlayers.length; k++){
+                    if(cPlayers[k] != null){
+                        dressingRoomB[i][j] = cPlayers[k].getName();
+                        cPlayers[k] = null;
+                        set = true;
+                    }
+                }
+            }
+        }
+        for(int i = 0; i<dressingRoomB.length; i++){
+            for(int j = 0; j<dressingRoomB[0].length; j++){
+                if(dressingRoomB[i][j] != null){
+                    text += dressingRoomB[i][j] + "\t";
+                } else{
+                    text += "Empty \t";
+                }
+            }
+            text += "\n";
+        }
+        return text;
+    }
+
+    public String showOfficeSector(){
+        String text = "\n-----------  Office Sector  ----------\n";
+        boolean set = false;
+        ArrayList<Employee> cEmployees = employees;
+        for(int i = 0; i<officeSector.length; i= i+2){
+            for(int j = 0; j<officeSector[0].length; j = j+2){
+                set = false;
+                for(int k = 0; k<cEmployees.size() && !set; k++){
+                    if((cEmployees.get(k) instanceof PrincipalTrainer || cEmployees.get(k) instanceof TrainerAssistant) && cEmployees.get(k).isStatus()){
+                        officeSector[i][j] = cEmployees.get(k).getName();
+                        cEmployees.remove(k);
+                        set = true;
+                    }
+                }
+            }
+        }
+        for(int i = 0; i<officeSector.length; i++){
+            for(int j = 0; j<officeSector[0].length; j++){
+                if(officeSector[i][j] != null){
+                    text += officeSector[i][j] + "\t";
+                } else{
+                    text += "Empty \t";
+                }
+            }
+            text += "\n";
+        }
+        return text;
     }
 }

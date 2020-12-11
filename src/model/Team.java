@@ -179,4 +179,96 @@ public class Team {
         numOfAssistants--;
         return firedAssistant;
     }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @return int return the numOfPlayers
+     */
+    public int getNumOfPlayers() {
+        return numOfPlayers;
+    }
+
+    /**
+     * @param numOfPlayers the numOfPlayers to set
+     */
+    public void setNumOfPlayers(int numOfPlayers) {
+        this.numOfPlayers = numOfPlayers;
+    }
+
+    /**
+     * @return int return the numOfAssistants
+     */
+    public int getNumOfAssistants() {
+        return numOfAssistants;
+    }
+
+    /**
+     * @param numOfAssistants the numOfAssistants to set
+     */
+    public void setNumOfAssistants(int numOfAssistants) {
+        this.numOfAssistants = numOfAssistants;
+    }
+
+    /**
+     * @return Player[] return the players
+     */
+    public Player[] getPlayers() {
+        return players;
+    }
+
+    /**
+     * @param players the players to set
+     */
+    public void setPlayers(Player[] players) {
+        this.players = players;
+    }
+
+    /**
+     * @return PrincipalTrainer return the principalTrainer
+     */
+    public PrincipalTrainer getPrincipalTrainer() {
+        return principalTrainer;
+    }
+
+    /**
+     * @param principalTrainer the principalTrainer to set
+     */
+    public void setPrincipalTrainer(PrincipalTrainer principalTrainer) {
+        this.principalTrainer = principalTrainer;
+    }
+
+    /**
+     * @return TrainerAssistant[] return the assistantsTrainers
+     */
+    public TrainerAssistant[] getAssistantsTrainers() {
+        return assistantsTrainers;
+    }
+
+    /**
+     * @param assistantsTrainers the assistantsTrainers to set
+     */
+    public void setAssistantsTrainers(TrainerAssistant[] assistantsTrainers) {
+        this.assistantsTrainers = assistantsTrainers;
+    }
+
+    /**
+     * @return ArrayList<LineUp> return the lineUps
+     */
+    public ArrayList<LineUp> getLineUps() {
+        return lineUps;
+    }
+
+    /**
+     * @param lineUps the lineUps to set
+     */
+    public void setLineUps(ArrayList<LineUp> lineUps) {
+        this.lineUps = lineUps;
+    }
+
 }
