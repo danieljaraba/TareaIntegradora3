@@ -180,6 +180,21 @@ public class Team {
         return firedAssistant;
     }
 
+    public void addLineUp(String date, String tactic, String formation){
+        LineUp lineup = new LineUp(date, tactic, formation);
+        lineUps.add(lineup);
+    }
+
+    public String showLineUps(){
+        String text = "";
+        if(!(lineUps.isEmpty())){
+            for(int i = 0; i<lineUps.size(); i++){
+                text += lineUps.get(i).showLineUp();
+            }
+        }
+        return text;
+    }
+
     /**
      * @param name the name to set
      */

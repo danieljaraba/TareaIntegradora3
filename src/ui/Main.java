@@ -43,6 +43,8 @@ public class Main {
                          "(7) Show employees. \n" +
                          "(8) Show dressing rooms. \n" +
                          "(9) Show office sector. \n" +
+                         "(10) Add a new Line Up. \n" +
+                         "(11) Show Line Ups. \n" +
                          "(0) End the program. \n"
                         );
     }
@@ -75,6 +77,12 @@ public class Main {
             break;
             case 9:
                 showOfficeSector();
+            break;
+            case 10:
+                addLineUp();
+            break;
+            case 11:
+                showLineUps();
             break;
         }
     }
@@ -269,5 +277,39 @@ public class Main {
 
     public void showOfficeSector(){
         System.out.print(club.showOfficeSector());
+    }
+
+    public void addLineUp(){
+        System.out.println("Select the team where is going to be add the line up: ");
+        System.out.print(" (1) Team A \n (2) Team B \n");
+        int team = sc.nextInt();
+        sc.nextLine();
+        System.out.print("Date: ");
+        String date = sc.nextLine();
+        System.out.print("Select one option: \n (1) POSSESSION \n (2) COUNTERATTACK \n (3) PRESSION \n (4) DEFAULT \n");
+        int option = sc.nextInt();
+        sc.nextLine();
+        String tactic = "";
+        switch(option){
+            case 1:
+                tactic = "POSSESSION";
+            break;
+            case 2:
+                tactic = "COUNTERATTACK";
+            break;
+            case 3:
+                tactic = "PRESSION";
+            break;
+            case 4:
+                tactic = "DEFAULT";
+            break;
+        }
+        System.out.print("Formation: ");
+        String formation = sc.nextLine();
+        club.addLineUp(team, date, tactic, formation);
+    }
+
+    public void showLineUps(){
+        System.out.print(club.showLineUps());
     }
 }

@@ -306,4 +306,23 @@ public class Club {
         }
         return text;
     }
+
+    public void addLineUp(int team, String date, String tactic, String formation){
+        switch(team){
+            case 1:
+                teamA.addLineUp(date, tactic, formation);
+            break;
+            case 2:
+                teamB.addLineUp(date, tactic, formation);
+            break;
+        }
+    }
+
+    public String showLineUps(){
+        String text = "\n----------  Team A  ---------\n";
+        text += teamA.showLineUps();
+        text += "\n--------  Team B  ---------\n";
+        text += teamB.showLineUps();
+        return text;
+    }
 }
