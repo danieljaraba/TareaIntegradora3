@@ -100,6 +100,14 @@ public class Club {
         }
     }
 
+    public String showEmployees(){
+        String text = "\n**********  Employees  ***********\n";
+        for(int i = 0; i<employees.size(); i++){
+            text += employees.get(i).showInfo() + "\n";
+        }
+        return text;
+    }
+
     public String showIndexPlayers(int team){
         String text = "";
         switch(team){
@@ -108,6 +116,19 @@ public class Club {
             break;
             case 2:
                 text = teamB.showIndexPlayers();
+            break;
+        }
+        return text;
+    }
+
+    public String showIndexAssistant(int team){
+        String text = "";
+        switch(team){
+            case 1:
+                text = teamA.showIndexAssistants();
+            break;
+            case 2:
+                text = teamB.showIndexAssistants();
             break;
         }
         return text;
@@ -124,5 +145,74 @@ public class Club {
             break;
         }
         return text;
+    }
+
+    public void firePlayer(int team, int index){
+        Player firedPlayer = null;
+        int size = employees.size();
+        switch(team){
+            case 1:
+                firedPlayer = teamA.firePlayer(index);
+                for(int i = 0; i<size; i++){
+                    if(firedPlayer.getName() == employees.get(i).getName()){
+                        employees.set(i, firedPlayer);
+                    }
+                }
+            break;
+            case 2:
+                firedPlayer = teamB.firePlayer(index);
+                    for(int i = 0; i<size; i++){
+                        if(firedPlayer.getName() == employees.get(i).getName()){
+                            employees.set(i, firedPlayer);
+                        }
+                    }
+            break;
+        }
+    }
+
+    public void firePrincipal(int team){
+        PrincipalTrainer firedPrincipal = null;
+        int size = employees.size();
+        switch(team){
+            case 1:
+                firedPrincipal = teamA.firePrincipal();
+                for(int i = 0; i<size; i++){
+                    if(firedPrincipal.getName() == employees.get(i).getName()){
+                        employees.set(i, firedPrincipal);
+                    }
+                }
+            break;
+            case 2:
+                firedPrincipal = teamB.firePrincipal();
+                    for(int i = 0; i<size; i++){
+                        if(firedPrincipal.getName() == employees.get(i).getName()){
+                            employees.set(i, firedPrincipal);
+                        }
+                    }
+            break;
+        }
+    }
+
+    public void fireAssitant(int team, int index){
+        TrainerAssistant firedAssistant = null;
+        int size = employees.size();
+        switch(team){
+            case 1:
+                firedAssistant = teamA.fireAssistant(index);
+                for(int i = 0; i<size; i++){
+                    if(firedAssistant.getName() == employees.get(i).getName()){
+                        employees.set(i, firedAssistant);
+                    }
+                }
+            break;
+            case 2:
+                firedAssistant = teamB.fireAssistant(index);
+                    for(int i = 0; i<size; i++){
+                        if(firedAssistant.getName() == employees.get(i).getName()){
+                            employees.set(i, firedAssistant);
+                        }
+                    }
+            break;
+        }
     }
 }

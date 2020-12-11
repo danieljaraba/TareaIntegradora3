@@ -35,7 +35,11 @@ public class Main {
                          "(1) Add a new player to a team. \n" +
                          "(2) Add a new trainer to a team. \n" +
                          "(3) Show the info of the teams. \n" +
-                         ""
+                         "(4) Fire a player. \n" +
+                         "(5) Fire a principal trainer. \n" +
+                         "(6) Fire an assistant trainer. \n" +
+                         "(7) Show employees. \n" +
+                         "(0) End the program. \n"
                         );
     }
 
@@ -49,6 +53,18 @@ public class Main {
             break;
             case 3:
                 showTeams();
+            break;
+            case 4:
+                firePlayer();
+            break;
+            case 5:
+                firePrincipal();
+            break;
+            case 6:
+                fireAssistant();
+            break;
+            case 7:
+                showEmployees();
             break;
         }
     }
@@ -197,5 +213,41 @@ public class Main {
     public void showTeams(){
         System.out.print(club.showTeam(1));
         System.out.print(club.showTeam(2));
+    }
+
+    public void showEmployees(){
+        System.out.println(club.showEmployees());
+    }
+
+    public void firePlayer(){
+        System.out.println("Select the team where is the player to fire:");
+        System.out.print(" (1) Team A \n (2) Team B \n");
+        int team = sc.nextInt();
+        sc.nextLine();
+        System.out.println("Select the player that is going to be fired: ");
+        System.out.print(club.showIndexPlayers(team));
+        int index = sc.nextInt();
+        sc.nextLine();
+        club.firePlayer(team, index-1);
+    }
+
+    public void firePrincipal(){
+        System.out.println("Select the team where is the principal trainer to fire: ");
+        System.out.print(" (1) Team A \n (2) Team B \n");
+        int team = sc.nextInt();
+        sc.nextLine();
+        club.firePrincipal(team);
+    }
+
+    public void fireAssistant(){
+        System.out.println("Select the team where is the principal trainer to fire: ");
+        System.out.print(" (1) Team A \n (2) Team B \n");
+        int team = sc.nextInt();
+        sc.nextLine();
+        System.out.println("Select the assistant trainer that is going to be fired: ");
+        System.out.print(club.showIndexAssistant(team));
+        int index = sc.nextInt();
+        sc.nextLine();
+        club.fireAssitant(team, index-1);
     }
 }

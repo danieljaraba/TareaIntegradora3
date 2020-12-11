@@ -94,8 +94,12 @@ public class Team {
 
     public String showIndexPlayers(){
         String text = "\n **********  Players  ********** \n";
+        int index = 0;
         for(int i = 0; i<MAX_PLAYERS; i++){
-            text += (i+1) + ". " + players[i].getName();
+            if(players[i] != null){
+                index++;
+                text += (index) + ". " + players[i].getName() + "\n";
+            }
         }
         return text;
     }
@@ -108,8 +112,10 @@ public class Team {
 
     public String showPlayers(){
         String text = "";
-        for(int i = 0; i<numOfPlayers; i++){
-            text += players[i].showInfo();
+        for(int i = 0; i<MAX_PLAYERS; i++){
+            if(players[i] != null){
+                text += players[i].showInfo();
+            }
         }
         return text;
     }
@@ -124,10 +130,24 @@ public class Team {
         return text;
     }
 
+    public String showIndexAssistants(){
+        String text = "\n **********  Assitants Trainers  ********** \n";
+        int index = 0;
+        for(int i = 0; i<MAX_TRAINERS; i++){
+            if(assistantsTrainers[i] != null){
+                index++;
+                text += (index) + ". " + assistantsTrainers[i].getName() + "\n";
+            }
+        }
+        return text;
+    }
+
     public String showAssitantTrainers(){
         String text = "";
-        for(int i = 0; i<numOfAssistants; i++){
-            text += assistantsTrainers[i].showInfo();
+        for(int i = 0; i<MAX_TRAINERS; i++){
+            if(assistantsTrainers[i] != null){
+                text += assistantsTrainers[i].showInfo();
+            }
         }
         return text;
     }
@@ -135,5 +155,28 @@ public class Team {
     public String showAllInfo(){
         String text = showTeam() + showPlayers() + showPrincipalTrainer() + showAssitantTrainers();
         return text;
+    }
+
+    public Player firePlayer(int index){
+        Player firedPlayer = players[index];
+        players[index] = null;
+        firedPlayer.fireEmployee();
+        numOfPlayers--;
+        return firedPlayer;
+    }
+
+    public PrincipalTrainer firePrincipal(){
+        PrincipalTrainer firedPrincipal = principalTrainer;
+        principalTrainer = null;
+        firedPrincipal.fireEmployee();
+        return firedPrincipal;
+    }
+
+    public TrainerAssistant fireAssistant(int index){
+        TrainerAssistant firedAssistant = assistantsTrainers[index];
+        assistantsTrainers[index] = null;
+        firedAssistant.fireEmployee();
+        numOfAssistants--;
+        return firedAssistant;
     }
 }
