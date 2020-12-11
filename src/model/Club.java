@@ -221,7 +221,7 @@ public class Club {
     public String showDressingRoomA(){
         String text = "\n-----------  Dressing Room A  ----------\n";
         boolean set = false;
-        Player[] cPlayers = teamA.getPlayers();
+        Player[] cPlayers = teamA.getPlayers().clone();
         for(int i = 0; i<dressingRoomA.length; i= i+2){
             for(int j = 0; j<dressingRoomA[0].length; j = j+2){
                 set = false;
@@ -250,11 +250,11 @@ public class Club {
     public String showDressingRoomB(){
         String text = "\n-----------  Dressing Room B  ----------\n";
         boolean set = false;
-        Player[] cPlayers = teamB.getPlayers();
+        Player[] cPlayers = teamB.getPlayers().clone();
         for(int i = 0; i<dressingRoomB.length; i= i+2){
-            for(int j = 0; j<dressingRoomB[0].length && !set; j = j+2){
+            for(int j = 0; j<dressingRoomB[0].length; j = j+2){
                 set = false;
-                for(int k = 0; k<cPlayers.length; k++){
+                for(int k = 0; k<cPlayers.length && !set; k++){
                     if(cPlayers[k] != null){
                         dressingRoomB[i][j] = cPlayers[k].getName();
                         cPlayers[k] = null;
@@ -285,9 +285,11 @@ public class Club {
                 set = false;
                 for(int k = 0; k<cEmployees.size() && !set; k++){
                     if((cEmployees.get(k) instanceof PrincipalTrainer || cEmployees.get(k) instanceof TrainerAssistant) && cEmployees.get(k).isStatus()){
-                        officeSector[i][j] = cEmployees.get(k).getName();
-                        cEmployees.remove(k);
-                        set = true;
+                        if(officeSector[i][j] == null){
+                            officeSector[i][j] = cEmployees.get(k).getName();
+                            cEmployees.remove(k);
+                            set = true;
+                        }
                     }
                 }
             }
